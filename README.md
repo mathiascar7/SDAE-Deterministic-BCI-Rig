@@ -92,11 +92,7 @@ There are no mutexes or locks around this cross-process payload. The producer wr
 
 On Windows, `Apple.cs` P/Invokes `QueryPerformanceCounter` and `QueryPerformanceFrequency` from `kernel32.dll`. It converts QPC ticks to integer nanoseconds using quotient/remainder arithmetic, avoiding a floating-point conversion of the large counter value:
 
-$$
-T_{\text{ns}} =
-\left\lfloor \frac{T_{\text{ticks}}}{f_{\text{QPC}}} \right\rfloor \cdot 10^9
-+ \left\lfloor \frac{(T_{\text{ticks}} \bmod f_{\text{QPC}})\cdot 10^9}{f_{\text{QPC}}} \right\rfloor
-$$
+$$T_{\text{ns}} = \left\lfloor \frac{T_{\text{ticks}}}{f_{\text{QPC}}} \right\rfloor \cdot 10^9 + \left\lfloor \frac{(T_{\text{ticks}} \bmod f_{\text{QPC}})\cdot 10^9}{f_{\text{QPC}}} \right\rfloor$$
 
 In code, this is equivalent to:
 
@@ -117,10 +113,7 @@ Unity's `PlayerLoop` is extended with a custom callback at the beginning of `Ear
 
 The branchless trigger test is:
 
-$$
-b_{\text{trig}} =
-\text{uint}(S_{\text{trigger}} - S_{\text{current}} - 1) \gg 31
-$$
+$$b_{\text{trig}} = \text{uint}(S_{\text{trigger}} - S_{\text{current}} - 1) \gg 31$$
 
 The trial state mask is updated through compare/exchange loops. A fixed-size edge-dispatch lookup and pre-baked kinematic samples avoid per-step trajectory construction.
 
@@ -151,23 +144,17 @@ The reported comparison evaluates **N = 10 randomized trials per environment**, 
 
 The Standalone trigger-latency median is a `53.3%` reduction from the Editor baseline:
 
-$$
-\frac{417.8 - 194.9}{417.8}\cdot 100\% \approx 53.3\%
-$$
+$$\frac{417.8 - 194.9}{417.8} \cdot 100\% \approx 53.3\%$$
 
 The observed minimum trigger-latency trial was `50 µs`. Both environments kept all 10 measured decision transports below 1 ms, compared with `16,670 µs` for one nominal 60 Hz frame. Clock errors displayed as `0.000 ms` are rounded to the figure's displayed precision; they do not mean physically exact zero error.
 
 Decision anticipation is computed as:
 
-$$
-M_{\text{ant}} = T_{\text{trigger}} - T_{\text{RAM\_arrival}} > 0\text{ ms}
-$$
+$$M_{\text{ant}} = T_{\text{trigger}} - T_{\text{RAM\_arrival}} > 0\text{ ms}$$
 
 The Bland–Altman limits of agreement are:
 
-$$
-\text{LoA} = \bar{d} \pm 1.96s_d
-$$
+$$\text{LoA} = \bar{d} \pm 1.96s_d$$
 
 The smaller Standalone limits indicate tighter agreement in this 10-trial sample. The reported Pearson tests do not show statistically significant correlation between the measured kinematic error and FPS in either run; with `N = 10`, this is evidence from a small sample, not proof of independence across all loads or machines.
 
@@ -225,7 +212,7 @@ The Unity project assets/scenes themselves are not included in this repository s
 └── hand2_script.cs
 ```
 
-The `bci_sessions/` directory contains raw, unfiltered session CSV telemetry recorded by the notebook, plus generated per-session PNG/PDF figures. New live runs create `Subject_<NN>_<MODE>_<timestamp>.csv` logs there. The standalone and Editor five-panel figures embedded above are currently at the repository root (not under a `Results/` directory).
+The `bci_sessions/` directory contains raw, unfiltered session CSV telemetry recorded by the notebook, plus generated per-session PNG/PDF figures. New live runs create `Subject_<NN>_<MODE>_<timestamp>.csv` logs there. The standalone and Editor five-panel figures embedded above are located at the repository root.
 
 ### File guide
 
@@ -257,7 +244,7 @@ The `bci_sessions/` directory contains raw, unfiltered session CSV telemetry rec
 ### Python and experiment
 
 1. Open `Python Benchmark Tester.ipynb` in VS Code and select a Python environment with `numpy` and `matplotlib`. Install missing packages into that environment if needed (for example, `python -m pip install numpy matplotlib`).
-2. Run the notebook's setup/orchestrator cell. It initializes the shared-memory map and waits for Unity configuration; on Windows, it also applies the notebook's timer and scheduling settings.
+2. Run the notebook's setup/orchestrator cell and select Option `[1]` to connect to the shared-memory bus. It initializes the shared-memory map and waits for Unity configuration; on Windows, it also applies the notebook's timer and scheduling settings.
 3. Start `TerrainDemoScene1` in Unity. Confirm the notebook detects the session configuration and then select/run its live trial or Benchmark R workflow. Press `R` in Unity to request the randomized 10-trial Benchmark R run.
 4. Choose **Training** for guided harness trials. For meaningful **Testing** behavior, first replace `run_bci_inference()`'s ground-truth placeholder with the intended online decoder and its late/missing-result behavior.
 5. The notebook writes raw session CSVs and generates five-panel PNG/PDF plots in `bci_sessions/`. Plot-only mode can generate figures from an existing CSV without running live trials.
