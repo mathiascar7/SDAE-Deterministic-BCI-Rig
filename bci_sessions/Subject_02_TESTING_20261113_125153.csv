@@ -1,0 +1,6 @@
+trial_id,subject_number,mode,ground_truth,prediction,is_correct,speed_pct,trigger_pct,total_steps,deadline_step,hand_prep_ms,py_fall_duration_ms,py_max_step_jitter_ms,u_ipc_trigger_latency_ms,u_decision_transport_ms,u_anticipation_margin_ms,u_actual_kinematic_ms,u_clock_jitter_ms,u_max_frame_burst,u_mean_fps
+1,2,TESTING,1,1,1,80.0,50.0,3750,1855,2537.602,3750.002,0.0036,0.24300,0.12870,19.228,3750.011,0.0111,109,31.2
+2,2,TESTING,2,2,1,80.0,50.0,3750,1855,2563.154,3750.007,0.0068,0.45270,0.21620,19.729,3750.001,0.0015,62,30.9
+3,2,TESTING,1,1,1,80.0,50.0,3750,1855,2549.791,3750.001,0.0008,0.47050,0.06670,19.901,3750.002,0.0019,49,30.9
+4,2,TESTING,1,1,1,80.0,50.0,3750,1855,2533.239,3750.001,0.0008,0.42360,0.03480,19.940,3750.000,0.0003,52,30.8
+5,2,TESTING,1,1,1,80.0,50.0,3750,1855,2534.228,3750.001,0.0013,0.71230,0.55730,19.410,3750.001,0.0009,83,31.7

@@ -1,0 +1,2 @@
+trial_id,subject_number,mode,ground_truth,prediction,is_correct,speed_pct,trigger_pct,total_steps,deadline_step,hand_prep_ms,py_fall_duration_ms,py_max_step_jitter_ms,u_ipc_trigger_latency_ms,u_decision_transport_ms,u_anticipation_margin_ms,u_actual_kinematic_ms,u_clock_jitter_ms,u_max_frame_burst,u_mean_fps
+1,2,TRAINING,1,1,1,80.0,50.0,3750,1855,3851.960,3750.001,0.0012,0.38360,0.73280,18.982,3750.001,0.0007,32,40.7
