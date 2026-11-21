@@ -150,7 +150,7 @@ The observed minimum trigger-latency trial was `50 µs`. Both environments kept 
 
 Decision anticipation is computed as:
 
-$$M_{\text{ant}} = T_{\text{trigger}} - T_{\text{RAM\_arrival}} > 0\text{ ms}$$
+$$M_{\text{ant}} = T_{\text{trigger}} - T_{\text{RAM arrival}} > 0\text{ ms}$$
 
 The Bland–Altman limits of agreement are:
 
