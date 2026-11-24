@@ -2,7 +2,8 @@
 
 **A real-time systems engineering architecture for deterministic software-to-engine transport, clock synchronization, and virtual kinematic actuation.**
 
-**This architecture is a next-generation evolution of my previous TCP socket BCI platform developed with NTNU, replacing network sockets with a lock-free shared-memory bus to cut transport latency from 32 ms down to 194.9 µs.**
+> [!IMPORTANT]
+> **Architectural Evolution (NTNU BCI Follow-Up):** This system is the next-generation, lock-free shared-memory evolution of my previous asynchronous TCP socket BCI platform developed with NTNU, reducing end-to-end transport latency by **164×**—from **32 ms** down to **194.9 µs**.
 
 The rig was engineered to overcome network-stack latency, OS scheduling jitter, and frame-rate coupling encountered when building real-time 3D neurofeedback paradigms over traditional socket-based streaming protocols such as LSL and TCP/UDP. It addresses timing and IPC coupling commonly encountered in Python-to-Unity neurofeedback prototypes by using a shared-memory data path and a Unity-side 1 kHz clock independent of rendered frame cadence.
 
